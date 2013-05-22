@@ -1,0 +1,33 @@
+Este arquivo contém informações sobre como solicitar ao twitter as credenciais 
+para autenticação oauth no nosso script em python.
+
+1. É necessário ter uma conta no twitter. Caso não tenha, favor criar uma.
+Todo o acesso será feito através desta conta no twitter.
+
+2. Entre em https://dev.twitter.com/apps utilizando as credenciais dessa conta.
+
+3. Clique no botão "Create a new application" 
+
+4. Forneça um nome à aplicação. Este nome deve ser único em todo o domínio do twitter.
+Normalmente coloco meu usuário como prefixo do nome da aplicação. 
+
+5. Forneça uma descrição para a aplicação.
+
+6. Forneça um website para a sua aplicação, caso exista. Senão preencha somente com uma
+URL válida.
+
+7. Clique no checkbox "Yes, I agree"
+
+8. Preencha o Captcha
+
+9. Clique em "Create your twitter application"
+
+10. Nesta próxima tela já se pode copiar/colar os valores de "Consumer key" e "Consumer secret"
+para o código python
+
+11. Clique no botão "Create my access token"
+
+12. Agora copie/cole os valores de "Access token" e "Access token secret" para o código 
+python.
+
+
