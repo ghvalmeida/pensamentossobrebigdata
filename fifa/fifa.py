@@ -9,7 +9,6 @@ import copy
 import time
 
 shall_print = False
-
 mock_prices = []
 mock = {
     "d": {
@@ -60,12 +59,14 @@ def main():
   print 'Monitoring categories'
   print json.dumps(categories, sort_keys=True, indent=4, separators=(',', ': '))
 
-  build_mock()
+  #build_mock()
 
+  #json_fifa = read_json_mock()
   json_fifa = read_json_fifa()
   last_product_prices_quantity = process_json_data(json_fifa) 
 
   while True:
+    #json_fifa = read_json_mock()
     json_fifa = read_json_fifa()
     if shall_print:
       print 'Shall print'
@@ -158,16 +159,26 @@ def alter_mock():
   else:
     shall_print = False
 
-def read_json_fifa():
+def read_json_mock():
   global mock_prices
   alter_mock()
   return mock_prices 
-  #result = urllib.urlopen('https://fwctickets.fifa.com/TopsAkaCalls/Calls.aspx/getRefreshChartAvaDem?l=en&c=BRA')
-  #print result
-  #json_fifa_txt = result.read()
-  #json_fifa = json.loads(json_fifa_txt)
+
+def read_json_fifa():
+  url_result = urllib.urlopen('https://fwctickets.fifa.com/TopsAkaCalls/Calls.aspx/getRefreshChartAvaDem?l=en&c=BRA')
+  json_fifa_txt = url_result.read()
+  json_fifa = json.loads(json_fifa_txt)
   #print json.dumps(json_fifa, sort_keys=True, indent=4, separators=(',', ': '))
-  #return json_fifa 
+
+  d = json_fifa['d']
+  data = d['data']
+  data_str = ''
+  for d in data:
+    data_str = data_str + d
+  data_json = json.loads(data_str)
+  product_prices = data_json['BasicCodes']['PRODUCTPRICES']
+
+  return product_prices 
 
 if __name__ == "__main__":
    main()
