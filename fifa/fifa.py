@@ -45,8 +45,7 @@ categories = { '1': u'Categoria 1',
 }
 
 def emit_alert():
-  for i in range(1,20):
-    print '\a'
+  print '\a'*20
   time.sleep(59)
      
 def get_datetime():
