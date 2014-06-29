@@ -85,7 +85,7 @@ def main():
     if len(diff):
       print get_datetime()
       print json.dumps(diff, sort_keys=True, indent=4, separators=(',', ': '))
-      #emit_alert()
+      emit_alert()
 
     last_product_prices_quantity = product_prices_quantity
 
