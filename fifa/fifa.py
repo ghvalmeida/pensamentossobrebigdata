@@ -88,6 +88,7 @@ def main():
       emit_alert()
 
     last_product_prices_quantity = product_prices_quantity
+    time.sleep(5)
 
 def product_prices_diff(product_prices, last_product_prices):
   result = []
