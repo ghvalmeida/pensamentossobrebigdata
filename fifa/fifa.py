@@ -165,9 +165,12 @@ def read_json_mock():
   return mock_prices 
 
 def read_json_fifa():
-  url_result = urllib.urlopen('https://fwctickets.fifa.com/TopsAkaCalls/Calls.aspx/getRefreshChartAvaDem?l=en&c=BRA')
+  try:
+    url_result = urllib.urlopen('https://fwctickets.fifa.com/TopsAkaCalls/Calls.aspx/getRefreshChartAvaDem?l=en&c=BRA')
+  except IOError:
+    return []
   if url_result.getcode()<>200:
-      return []
+    return []
   json_fifa_txt = url_result.read()
   json_fifa = json.loads(json_fifa_txt)
   #print json.dumps(json_fifa, sort_keys=True, indent=4, separators=(',', ': '))
