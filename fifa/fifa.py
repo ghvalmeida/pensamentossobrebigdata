@@ -45,8 +45,7 @@ categories = { '1': u'Categoria 1',
 }
 
 def emit_alert():
-  for i in range(1,20):
-    print '\a'
+  print '\a'*20
   time.sleep(59)
      
 def get_datetime():
@@ -88,6 +87,7 @@ def main():
       emit_alert()
 
     last_product_prices_quantity = product_prices_quantity
+    time.sleep(5)
 
 def product_prices_diff(product_prices, last_product_prices):
   result = []
@@ -165,10 +165,16 @@ def read_json_mock():
   return mock_prices 
 
 def read_json_fifa():
-  url_result = urllib.urlopen('https://fwctickets.fifa.com/TopsAkaCalls/Calls.aspx/getRefreshChartAvaDem?l=en&c=BRA')
-  if url_result.get_code() != 200:
-    return None
+  try:
+    url_result = urllib.urlopen('https://fwctickets.fifa.com/TopsAkaCalls/Calls.aspx/getRefreshChartAvaDem?l=en&c=BRA')
+  except IOError as e:
+    print "I/O error({0}): {1}".format(e.errno, e.strerror)
+    return []
+  except:
+    raise
 
+  if url_result.getcode()<>200:
+    return []
   json_fifa_txt = url_result.read()
   json_fifa = json.loads(json_fifa_txt)
   #print json.dumps(json_fifa, sort_keys=True, indent=4, separators=(',', ': '))
