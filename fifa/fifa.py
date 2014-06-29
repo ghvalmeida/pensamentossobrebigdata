@@ -168,8 +168,12 @@ def read_json_mock():
 def read_json_fifa():
   try:
     url_result = urllib.urlopen('https://fwctickets.fifa.com/TopsAkaCalls/Calls.aspx/getRefreshChartAvaDem?l=en&c=BRA')
-  except IOError:
+  except IOError as e:
+    print "I/O error({0}): {1}".format(e.errno, e.strerror)
     return []
+  except:
+    raise
+
   if url_result.getcode()<>200:
     return []
   json_fifa_txt = url_result.read()
